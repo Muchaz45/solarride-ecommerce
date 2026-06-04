@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarRide — Full Design V2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f5f5;padding:2rem;color:#111}
+.lbl{font-size:10px;font-weight:700;color:#666;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;margin-top:2.5rem}
+.frame{border:1px solid #ddd;border-radius:12px;overflow:hidden;background:#fff;margin-bottom:.5rem;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+
+/* ── SHARED ── */
+.nav{background:#111;padding:0 20px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nb{display:flex;align-items:center;gap:8px}
+.lb{width:28px;height:28px;border-radius:6px;border:2px solid #22c55e;display:flex;align-items:center;justify-content:center}
+.ld{width:11px;height:11px;background:#22c55e;border-radius:50%}
+.bt{font-size:14px;font-weight:700;color:#fff}.bt span{color:#22c55e}
+.nl2{display:flex;gap:18px}
+.nk{font-size:11px;color:rgba(255,255,255,.5)}.nk.a{color:#22c55e}
+.nc{background:#22c55e;color:#111;font-size:11px;font-weight:700;padding:6px 14px;border-radius:5px}
+.ng{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:11px;padding:6px 14px;border-radius:5px}
+.foot{background:#111;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.fb{font-size:10px;color:rgba(255,255,255,.35)}
+.fls{display:flex;gap:14px}.fl{font-size:9px;color:rgba(255,255,255,.2)}
+.sec-tag{display:inline-block;background:rgba(34,197,94,.1);color:#16a34a;border:1px solid rgba(34,197,94,.25);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.divider{height:3px;background:#22c55e;width:40px;margin-bottom:12px}
+
+/* ── PAGE 1 — LANDING ── */
+.hero{background:#fff;padding:44px 22px 32px;border-bottom:3px solid #22c55e}
+.hero-inner{max-width:520px}
+.hero h1{font-size:32px;font-weight:700;color:#111;line-height:1.15;margin-bottom:10px}
+.hero h1 em{color:#22c55e;font-style:normal;border-bottom:3px solid #22c55e}
+.hero p{font-size:12px;color:#666;margin-bottom:22px;line-height:1.7;max-width:420px}
+.hbtns{display:flex;gap:8px;margin-bottom:28px}
+.bg{background:#111;color:#fff;font-size:11px;font-weight:700;padding:10px 20px;border-radius:5px}
+.bo{border:2px solid #111;color:#111;font-size:11px;font-weight:700;padding:10px 20px;border-radius:5px;background:#fff}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-top:22px;border-top:1px solid #eee}
+.stat{border-left:3px solid #22c55e;padding-left:12px}
+.sv{font-size:22px;font-weight:700;color:#111}.sl{font-size:10px;color:#888;margin-top:2px}
+
+/* HOW PAYGO WORKS */
+.paygo-how{padding:28px 22px;background:#f9fafb;border-bottom:1px solid #eee}
+.ph-title{font-size:18px;font-weight:700;color:#111;margin-bottom:4px}
+.ph-sub{font-size:11px;color:#888;margin-bottom:20px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:#fff;border:1px solid #e5e7eb;border-top:3px solid #22c55e;border-radius:8px;padding:14px}
+.step-num{width:28px;height:28px;background:#22c55e;color:#111;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:10px}
+.step-title{font-size:12px;font-weight:700;color:#111;margin-bottom:4px}
+.step-desc{font-size:10px;color:#888;line-height:1.5}
+
+/* CATEGORIES */
+.cats{padding:22px;background:#fff;border-bottom:1px solid #eee}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cat{border:1px solid #e5e7eb;border-top:3px solid #22c55e;border-radius:8px;padding:16px}
+.cat-ic{width:36px;height:36px;border-radius:8px;margin-bottom:10px;display:flex;align-items:center;justify-content:center}
+.cat-ic.g{background:#dcfce7}.cat-ic.b{background:#dbeafe}.cat-ic.a{background:#fef3c7}
+.cat-dot{width:14px;height:14px;border-radius:50%}
+.cat-dot.g{background:#22c55e}.cat-dot.b{background:#3b82f6}.cat-dot.a{background:#f59e0b}
+.cat-n{font-size:13px;font-weight:700;color:#111;margin-bottom:3px}
+.cat-c{font-size:10px;color:#888;margin-bottom:8px}
+.cat-link{font-size:10px;font-weight:700;color:#22c55e}
+
+/* FEATURED */
+.featured{padding:22px;background:#f9fafb;border-bottom:1px solid #eee}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.feat-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;position:relative}
+.feat-badge{position:absolute;top:8px;left:8px;background:#22c55e;color:#111;font-size:8px;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase}
+.feat-img{height:90px;background:#f9fafb;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #eee}
+.feat-dot{width:40px;height:40px;border-radius:50%}
+.feat-dot.g{background:#bbf7d0}.feat-dot.b{background:#bfdbfe}.feat-dot.a{background:#fde68a}
+.feat-body{padding:12px}
+.feat-cat{font-size:8px;font-weight:700;color:#22c55e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.feat-cat.b{color:#3b82f6}
+.feat-n{font-size:12px;font-weight:700;color:#111;margin-bottom:4px}
+.feat-price{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.feat-paygo{font-size:10px;color:#22c55e;margin-bottom:9px}
+.feat-btns{display:flex;gap:5px}
+.fbb{font-size:9px;font-weight:700;padding:5px 9px;border-radius:4px}
+.fbb.p{background:#111;color:#fff}.fbb.s{border:1px solid #ddd;color:#666}
+
+/* TESTIMONIALS */
+.testi{padding:22px;background:#fff;border-bottom:1px solid #eee}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tcard{border:1px solid #e5e7eb;border-radius:8px;padding:14px;border-left:3px solid #22c55e}
+.tcard-stars{font-size:11px;color:#22c55e;margin-bottom:8px}
+.tcard-text{font-size:10px;color:#555;line-height:1.6;margin-bottom:10px;font-style:italic}
+.tcard-author{display:flex;align-items:center;gap:8px}
+.tcard-avatar{width:28px;height:28px;border-radius:50%;background:#dcfce7;border:2px solid #22c55e;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#16a34a}
+.tcard-name{font-size:10px;font-weight:700;color:#111}
+.tcard-loc{font-size:9px;color:#888}
+
+/* NEWSLETTER */
+.newsletter{padding:28px 22px;background:#111;border-bottom:1px solid #222}
+.nl-inner{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.nl-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.nl-title span{color:#22c55e}
+.nl-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.6}
+.nl-form{display:flex;gap:8px}
+.nl-input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:10px 14px;border-radius:5px;font-size:11px}
+.nl-btn{background:#22c55e;color:#111;font-size:11px;font-weight:700;padding:10px 18px;border-radius:5px;white-space:nowrap}
+
+/* ── PAGE 2 — PRODUCTS ── */
+.prod-header{padding:20px 22px 0;background:#fff;border-bottom:1px solid #eee}
+.search-bar{display:flex;gap:8px;margin-bottom:14px}
+.search-input{flex:1;border:1px solid #e5e7eb;border-radius:5px;padding:8px 14px;font-size:11px;color:#111}
+.search-btn{background:#111;color:#fff;font-size:11px;font-weight:700;padding:8px 16px;border-radius:5px}
+.filter-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:10px;color:#888;margin-right:4px}
+.pill{font-size:10px;padding:5px 12px;border-radius:20px;border:1px solid #e5e7eb;color:#888}
+.pill.ac{background:#111;color:#22c55e;border-color:#111;font-weight:700}
+.prod-section{padding:16px 22px 22px;background:#f9fafb}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.prod-card{background:#fff;border:1px solid #e5e7eb;border-top:3px solid #22c55e;border-radius:8px;overflow:hidden}
+.prod-img{height:90px;background:#f9fafb;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #eee;position:relative}
+.prod-dot{width:40px;height:40px;border-radius:50%}
+.prod-dot.g{background:#bbf7d0}.prod-dot.b{background:#bfdbfe}.prod-dot.a{background:#fde68a}
+.prod-body{padding:12px}
+.prod-cat{font-size:8px;font-weight:700;color:#22c55e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.prod-cat.b{color:#3b82f6}.prod-cat.a{color:#f59e0b}
+.prod-n{font-size:12px;font-weight:700;color:#111;margin-bottom:4px}
+.prod-price{font-size:14px;font-weight:700;color:#111;margin-bottom:2px}
+.prod-paygo{font-size:10px;color:#22c55e;margin-bottom:9px}
+.prod-btns{display:flex;gap:5px}
+.pbb{font-size:9px;font-weight:700;padding:5px 9px;border-radius:4px}
+.pbb.p{background:#111;color:#fff}.pbb.s{border:1px solid #ddd;color:#666}
+.calc-mini{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:5px;padding:8px;margin-top:8px;display:none}
+.calc-mini.show{display:block}
+.calc-mini-row{display:flex;justify-content:space-between;font-size:9px;margin-bottom:3px}
+.calc-mini-lbl{color:#888}.calc-mini-val{font-weight:700;color:#16a34a}
+
+/* ── PAGE 3 — CALCULATOR ── */
+.calc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px 22px}
+.calc-form{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px}
+.cf-title{font-size:13px;font-weight:700;color:#111;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:6px}
+.cf-title::before{content:'';width:3px;height:14px;background:#22c55e;border-radius:2px;display:block}
+.fl{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-weight:700}
+.fi{width:100%;border:1px solid #e5e7eb;border-radius:5px;padding:8px 10px;font-size:12px;color:#111;margin-bottom:10px;background:#fff}
+.fi:focus{outline:none;border-color:#22c55e}
+.calc-results{background:#111;border-radius:8px;padding:16px;display:flex;flex-direction:column}
+.cr-title{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:14px;text-transform:uppercase;letter-spacing:.1em}
+.daily-big{text-align:center;padding:16px 0 14px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:12px}
+.dv{font-size:32px;font-weight:700;color:#22c55e}.dl{font-size:10px;color:rgba(255,255,255,.35);margin-top:3px}
+.rr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.rr:last-of-type{border-bottom:none}
+.rl{font-size:11px;color:rgba(255,255,255,.4)}.rv{font-size:11px;color:#fff;font-weight:700}
+.rv.g{color:#22c55e}
+.cbtn{margin-top:14px;background:#22c55e;color:#111;font-size:11px;font-weight:700;padding:11px;border-radius:5px;text-align:center}
+.schedule{padding:16px 22px 22px;background:#f9fafb}
+.sched-title{font-size:13px;font-weight:700;color:#111;margin-bottom:12px}
+.sched-table{width:100%;border-collapse:collapse;font-size:10px}
+.sched-table th{background:#111;color:#22c55e;padding:8px 10px;text-align:left;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.sched-table td{padding:7px 10px;border-bottom:1px solid #eee;color:#555}
+.sched-table tr:last-child td{border-bottom:none}
+.sched-table tr:nth-child(even) td{background:#f9fafb}
+
+/* ── PAGE 4 — CHECKOUT ── */
+.checkout-wrap{display:grid;grid-template-columns:1fr 360px;gap:16px;padding:20px 22px}
+.form-sec{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin-bottom:12px}
+.fst{font-size:12px;font-weight:700;color:#111;margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:6px}
+.fst::before{content:'';width:3px;height:13px;background:#22c55e;border-radius:2px;display:block}
+.pay-opts{display:flex;gap:8px;margin-bottom:10px}
+.poo{flex:1;border:2px solid #e5e7eb;border-radius:7px;padding:10px;text-align:center;cursor:pointer}
+.poo.ac{border-color:#22c55e;background:#f0fdf4}
+.pon{font-size:11px;font-weight:700;color:#111;margin-bottom:2px}
+.poo.ac .pon{color:#16a34a}
+.pos{font-size:9px;color:#888}
+.paygo-note{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:10px;color:#16a34a;line-height:1.6}
+.ord-panel{background:#111;border-radius:8px;padding:16px;position:sticky;top:20px}
+.ot{font-size:12px;font-weight:700;color:#fff;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.or{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:11px}
+.or:last-of-type{border-bottom:none;font-weight:700;font-size:12px;margin-top:4px}
+.ol{color:rgba(255,255,255,.4)}.ov{color:rgba(255,255,255,.75)}.ov.g{color:#22c55e}
+.pb3{margin-top:12px;background:#22c55e;color:#111;font-size:11px;font-weight:700;padding:11px;border-radius:5px;text-align:center}
+
+/* ── PAGE 5 — DASHBOARD ── */
+.dash-header{padding:20px 22px 16px;background:#fff;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+.dash-welcome{font-size:16px;font-weight:700;color:#111}
+.dash-welcome span{color:#22c55e}
+.dash-date{font-size:10px;color:#888}
+.dash-body{padding:16px 22px;background:#f9fafb}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.metric{background:#fff;border:1px solid #e5e7eb;border-top:3px solid #22c55e;border-radius:8px;padding:14px}
+.ml{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:700}
+.mv{font-size:20px;font-weight:700;color:#111}.mv.g{color:#22c55e}.mv.r{color:#ef4444}
+.plan{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px;margin-bottom:10px}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.pln{font-size:12px;font-weight:700;color:#111}
+.pbg{font-size:9px;background:#dcfce7;color:#16a34a;border:1px solid #86efac;padding:3px 9px;border-radius:20px;font-weight:700}
+.pbg.late{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
+.pr{height:6px;background:#f3f4f6;border-radius:3px;margin-bottom:8px;overflow:hidden}
+.pf{height:100%;background:#22c55e;border-radius:3px}
+.pf.late{background:#ef4444}
+.pd{display:flex;justify-content:space-between;margin-bottom:10px}
+.pdt{font-size:10px;color:#888}.pdt span{color:#111;font-weight:700}
+.paybtn{background:#111;color:#22c55e;font-size:10px;font-weight:700;padding:7px 16px;border-radius:4px;display:inline-block}
+.hist{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px}
+.hist-title{font-size:12px;font-weight:700;color:#111;margin-bottom:10px}
+.hist-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f3f4f6;font-size:10px}
+.hist-row:last-child{border-bottom:none}
+.hist-prod{color:#111;font-weight:700}.hist-date{color:#888}.hist-amt{color:#16a34a;font-weight:700}
+.hist-status{font-size:8px;background:#dcfce7;color:#16a34a;padding:2px 8px;border-radius:20px;font-weight:700}
+
+/* ── PAGE 6 — CONFIRMATION ── */
+.confirm-bg{background:#fff;padding:36px 22px;text-align:center;border-bottom:1px solid #eee}
+.cion{width:60px;height:60px;border-radius:50%;background:#dcfce7;border:3px solid #22c55e;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.cck{width:26px;height:26px;background:#22c55e;border-radius:50%}
+.ctit{font-size:24px;font-weight:700;color:#111;margin-bottom:5px}
+.csub{font-size:12px;color:#888;margin-bottom:24px}
+.cm{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;text-align:left}
+.cmc{background:#f9fafb;border:1px solid #e5e7eb;border-top:3px solid #22c55e;border-radius:7px;padding:12px}
+.cml{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-weight:700}
+.cmv{font-size:12px;font-weight:700;color:#111}.cmv.g{color:#22c55e}
+.items-box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:14px;margin-bottom:16px;text-align:left}
+.items-title{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.item-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;font-size:11px}
+.item-row:last-child{border-bottom:none}
+.item-n{color:#111;font-weight:700}.item-p{color:#22c55e;font-weight:700}
+.total-box{background:#111;border-radius:8px;padding:16px;margin-bottom:20px}
+.total-lbl{font-size:10px;color:rgba(255,255,255,.4);margin-bottom:4px}
+.total-amt{font-size:28px;font-weight:700;color:#22c55e}
+.cbt{background:#111;color:#22c55e;font-size:11px;font-weight:700;padding:11px 28px;border-radius:5px;display:inline-block}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ -->
+<p class="lbl">1 — Landing page (index.html)</p>
+<div class="frame">
+  <div class="nav">
+    <div class="nb"><div class="lb"><div class="ld"></div></div><span class="bt">Solar<span>Ride</span></span></div>
+    <div class="nl2"><span class="nk">Products</span><span class="nk a">PAYGO</span><span class="nk">Calculator</span><span class="nk">About</span></div>
+    <div style="display:flex;gap:6px"><span class="ng">Login</span><span class="nc">Get started</span></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="sec-tag">Clean energy for everyone</div>
+      <h1>Power your life<br>with <em>solar energy</em></h1>
+      <p>Affordable solar systems, e-bikes and accessories. Pay daily with our PAYGO financing — no large upfront cost required. Serving 2,400+ customers across East Africa.</p>
+      <div class="hbtns"><span class="bg">Shop products</span><span class="bo">Calculate payments</span></div>
+      <div class="stats">
+        <div class="stat"><div class="sv">2,400+</div><div class="sl">Customers served</div></div>
+        <div class="stat"><div class="sv">$2.50</div><div class="sl">From per day</div></div>
+        <div class="stat"><div class="sv">98%</div><div class="sl">Satisfaction rate</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How PAYGO works -->
+  <div class="paygo-how">
+    <div class="sec-tag">How it works</div>
+    <div class="ph-title">PAYGO financing — simple as 1, 2, 3, 4</div>
+    <div class="ph-sub">Own your solar product or e-bike with small daily payments. No bank required.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-title">Choose product</div><div class="step-desc">Pick any solar system or e-bike from our catalogue.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-title">Pay deposit</div><div class="step-desc">Pay a small deposit via M-Pesa to get started today.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-title">Use daily</div><div class="step-desc">Your product is activated. Pay small daily amounts.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-title">Own it forever</div><div class="step-desc">Complete payments and unlock your device permanently.</div></div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="cats">
+    <div class="sec-tag">Browse</div>
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px">Shop by category</div>
+    <div style="font-size:11px;color:#888;margin-bottom:16px">Find the right product for your needs</div>
+    <div class="cat-grid">
+      <div class="cat"><div class="cat-ic g"><div class="cat-dot g"></div></div><div class="cat-n">Solar systems</div><div class="cat-c">6 products — from $99</div><div class="cat-link">View all →</div></div>
+      <div class="cat"><div class="cat-ic b"><div class="cat-dot b"></div></div><div class="cat-n">E-bikes</div><div class="cat-c">6 products — from $899</div><div class="cat-link">View all →</div></div>
+      <div class="cat"><div class="cat-ic a"><div class="cat-dot a"></div></div><div class="cat-n">Accessories</div><div class="cat-c">Coming soon</div><div class="cat-link" style="color:#bbb">Notify me →</div></div>
+    </div>
+  </div>
+
+  <!-- Featured products -->
+  <div class="featured">
+    <div class="sec-tag">Bestsellers</div>
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px">Featured products</div>
+    <div style="font-size:11px;color:#888;margin-bottom:16px">Our most popular picks</div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-badge">Bestseller</div><div class="feat-img"><div class="feat-dot g"></div></div><div class="feat-body"><div class="feat-cat">Solar</div><div class="feat-n">Family Solar Kit</div><div class="feat-price">$599</div><div class="feat-paygo">or $3.80/day PAYGO</div><div class="feat-btns"><span class="fbb p">Buy now</span><span class="fbb s">PAYGO</span></div></div></div>
+      <div class="feat-card"><div class="feat-badge" style="background:#3b82f6;color:#fff">Top rated</div><div class="feat-img"><div class="feat-dot b"></div></div><div class="feat-body"><div class="feat-cat b">E-bike</div><div class="feat-n">Alpha+ E-bike</div><div class="feat-price">$2,000</div><div class="feat-paygo">or $12.80/day PAYGO</div><div class="feat-btns"><span class="fbb p">Buy now</span><span class="fbb s">PAYGO</span></div></div></div>
+      <div class="feat-card"><div class="feat-badge" style="background:#f59e0b;color:#111">New arrival</div><div class="feat-img"><div class="feat-dot a"></div></div><div class="feat-body"><div class="feat-cat">Solar</div><div class="feat-n">Household Solar+</div><div class="feat-price">$799</div><div class="feat-paygo">or $5.10/day PAYGO</div><div class="feat-btns"><span class="fbb p">Buy now</span><span class="fbb s">PAYGO</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testi">
+    <div class="sec-tag">Reviews</div>
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px">What customers say</div>
+    <div style="font-size:11px;color:#888;margin-bottom:16px">Real stories from real customers</div>
+    <div class="testi-grid">
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-text">"The PAYGO plan changed everything for my family. I never thought I could afford solar — now we have power 24/7."</div><div class="tcard-author"><div class="tcard-avatar">JM</div><div><div class="tcard-name">Jane Mwangi</div><div class="tcard-loc">Kisumu, Kenya</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><div class="tcard-text">"The Alpha+ e-bike saves me $40/month on matatu fares. PAYGO at $12/day was very manageable for me."</div><div class="tcard-author"><div class="tcard-avatar">AO</div><div><div class="tcard-name">Alex Ochieng</div><div class="tcard-loc">Nairobi, Kenya</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★☆</div><div class="tcard-text">"Excellent customer service and the solar irrigation kit has boosted my farm yields significantly this season."</div><div class="tcard-author"><div class="tcard-avatar">FK</div><div><div class="tcard-name">Faith Kamau</div><div class="tcard-loc">Nakuru, Kenya</div></div></div></div>
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="newsletter">
+    <div class="nl-inner">
+      <div><div class="nl-title">Stay in the <span>loop</span></div><div class="nl-sub">Get updates on new products, PAYGO offers and clean energy tips. No spam — ever.</div></div>
+      <div class="nl-form"><input class="nl-input" placeholder="Enter your email address"><span class="nl-btn">Subscribe</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fb">SolarRide &copy; 2025</span><div class="fls"><span class="fl">Privacy</span><span class="fl">Terms</span><span class="fl">Contact</span></div></div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<p class="lbl">2 — Products (products.html)</p>
+<div class="frame">
+  <div class="nav">
+    <div class="nb"><div class="lb"><div class="ld"></div></div><span class="bt">Solar<span>Ride</span></span></div>
+    <div style="display:flex;gap:6px;align-items:center"><span class="nk">Cart (2)</span><span class="nc">My account</span></div>
+  </div>
+  <div class="prod-header">
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px;padding-top:16px">All products</div>
+    <div style="font-size:11px;color:#888;margin-bottom:12px">Showing 12 products</div>
+    <div class="search-bar"><input class="search-input" placeholder="Search products e.g. solar kit, e-bike..."><span class="search-btn">Search</span></div>
+    <div class="filter-row"><span class="filter-label">Filter:</span><span class="pill ac">All</span><span class="pill">Solar</span><span class="pill">E-bikes</span><span class="pill">PAYGO only</span><span class="pill">Under $500</span></div>
+  </div>
+  <div class="prod-section">
+    <div class="prod-grid">
+      <div class="prod-card"><div class="prod-img"><div class="prod-dot g"></div></div><div class="prod-body"><div class="prod-cat">Solar</div><div class="prod-n">Family Solar Kit</div><div class="prod-price">$599</div><div class="prod-paygo">or $3.80/day PAYGO</div><div class="prod-btns"><span class="pbb p">Buy now</span><span class="pbb s">PAYGO</span><span class="pbb s">Details</span></div><div class="calc-mini show"><div class="calc-mini-row"><span class="calc-mini-lbl">Deposit</span><span class="calc-mini-val">$60</span></div><div class="calc-mini-row"><span class="calc-mini-lbl">Daily</span><span class="calc-mini-val">$3.80/day</span></div><div class="calc-mini-row"><span class="calc-mini-lbl">Period</span><span class="calc-mini-val">180 days</span></div></div></div></div>
+      <div class="prod-card"><div class="prod-img"><div class="prod-dot b"></div></div><div class="prod-body"><div class="prod-cat b">E-bike</div><div class="prod-n">Alpha+ E-bike</div><div class="prod-price">$2,000</div><div class="prod-paygo">or $12.80/day PAYGO</div><div class="prod-btns"><span class="pbb p">Buy now</span><span class="pbb s">PAYGO</span><span class="pbb s">Details</span></div><div class="calc-mini show"><div class="calc-mini-row"><span class="calc-mini-lbl">Deposit</span><span class="calc-mini-val">$200</span></div><div class="calc-mini-row"><span class="calc-mini-lbl">Daily</span><span class="calc-mini-val">$12.80/day</span></div><div class="calc-mini-row"><span class="calc-mini-lbl">Period</span><span class="calc-mini-val">180 days</span></div></div></div></div>
+      <div class="prod-card"><div class="prod-img"><div class="prod-dot a"></div></div><div class="prod-body"><div class="prod-cat">Solar</div><div class="prod-n">Solar Charger</div><div class="prod-price">$299</div><div class="prod-paygo">or $1.90/day PAYGO</div><div class="prod-btns"><span class="pbb p">Buy now</span><span class="pbb s">PAYGO</span><span class="pbb s">Details</span></div><div class="calc-mini show"><div class="calc-mini-row"><span class="calc-mini-lbl">Deposit</span><span class="calc-mini-val">$30</span></div><div class="calc-mini-row"><span class="calc-mini-lbl">Daily</span><span class="calc-mini-val">$1.90/day</span></div><div class="calc-mini-row"><span class="calc-mini-lbl">Period</span><span class="calc-mini-val">180 days</span></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<p class="lbl">3 — PAYGO calculator (calculator.html)</p>
+<div class="frame">
+  <div class="nav">
+    <div class="nb"><div class="lb"><div class="ld"></div></div><span class="bt">Solar<span>Ride</span></span></div>
+  </div>
+  <div style="padding:20px 22px 0;background:#fff;border-bottom:1px solid #eee">
+    <div class="sec-tag">Calculator</div>
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px">PAYGO calculator</div>
+    <div style="font-size:11px;color:#888;margin-bottom:16px">See your daily payment before you commit — no obligation</div>
+  </div>
+  <div class="calc-wrap">
+    <div class="calc-form">
+      <div class="cf-title">Your details</div>
+      <div class="fl">Select product</div><div class="fi" style="color:#888">Alpha+ E-bike — $2,000</div>
+      <div class="fl">Product price (auto-filled)</div><div class="fi">$2,000.00</div>
+      <div class="fl">Deposit amount ($)</div><div class="fi">$200.00</div>
+      <div class="fl">Repayment period (days)</div><div class="fi">180 days</div>
+      <div class="fl">Interest rate (%)</div><div class="fi">20%</div>
+      <div class="cbtn" style="background:#111;color:#22c55e">Calculate →</div>
+    </div>
+    <div class="calc-results">
+      <div class="cr-title">Your payment plan</div>
+      <div class="daily-big"><div class="dv">$12.44</div><div class="dl">per day</div></div>
+      <div class="rr"><span class="rl">Product</span><span class="rv">Alpha+ E-bike</span></div>
+      <div class="rr"><span class="rl">Product price</span><span class="rv">$2,000.00</span></div>
+      <div class="rr"><span class="rl">Deposit today</span><span class="rv">$200.00</span></div>
+      <div class="rr"><span class="rl">Balance financed</span><span class="rv">$1,800.00</span></div>
+      <div class="rr"><span class="rl">Total repayment</span><span class="rv">$2,160.00</span></div>
+      <div class="rr"><span class="rl">Total interest</span><span class="rv">$360.00</span></div>
+      <div class="rr"><span class="rl">Period</span><span class="rv g">180 days</span></div>
+      <div class="cbtn">Start PAYGO plan →</div>
+    </div>
+  </div>
+  <div class="schedule">
+    <div class="sched-title">Payment schedule preview</div>
+    <table class="sched-table">
+      <tr><th>Month</th><th>Days paid</th><th>Amount paid</th><th>Balance remaining</th><th>Status</th></tr>
+      <tr><td>Month 1</td><td>30</td><td>$373.20</td><td>$1,786.80</td><td style="color:#22c55e;font-weight:700">On track</td></tr>
+      <tr><td>Month 2</td><td>60</td><td>$746.40</td><td>$1,413.60</td><td style="color:#22c55e;font-weight:700">On track</td></tr>
+      <tr><td>Month 3</td><td>90</td><td>$1,119.60</td><td>$1,040.40</td><td style="color:#22c55e;font-weight:700">On track</td></tr>
+      <tr><td>Month 4</td><td>120</td><td>$1,492.80</td><td>$667.20</td><td style="color:#888">Upcoming</td></tr>
+      <tr><td>Month 5</td><td>150</td><td>$1,866.00</td><td>$294.00</td><td style="color:#888">Upcoming</td></tr>
+      <tr><td>Month 6</td><td>180</td><td>$2,160.00</td><td>$0.00</td><td style="color:#3b82f6;font-weight:700">Ownership!</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<p class="lbl">4 — Checkout (checkout.html)</p>
+<div class="frame">
+  <div class="nav">
+    <div class="nb"><div class="lb"><div class="ld"></div></div><span class="bt">Solar<span>Ride</span></span></div>
+    <span class="nk">← Back to cart</span>
+  </div>
+  <div style="padding:20px 22px 0;background:#fff;border-bottom:1px solid #eee">
+    <div class="sec-tag">Checkout</div>
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px">Complete your order</div>
+    <div style="font-size:11px;color:#888;margin-bottom:16px">Step 2 of 3 — Customer details</div>
+  </div>
+  <div class="checkout-wrap">
+    <div>
+      <div class="form-sec">
+        <div class="fst">Customer details</div>
+        <div class="fl">Full name</div><div class="fi" style="color:#888">John Kamau</div>
+        <div class="fl">Phone number</div><div class="fi" style="color:#888">0712 345 678</div>
+        <div class="fl">Email address</div><div class="fi" style="color:#888">john@email.com</div>
+        <div class="fl">Delivery address</div><div class="fi" style="color:#888">Waiyaki Way, Nairobi</div>
+      </div>
+      <div class="form-sec">
+        <div class="fst">Payment method</div>
+        <div class="pay-opts">
+          <div class="poo"><div class="pon">Buy outright</div><div class="pos">Pay full amount today</div></div>
+          <div class="poo ac"><div class="pon">PAYGO financing</div><div class="pos">Small daily payments</div></div>
+        </div>
+        <div class="paygo-note">Deposit <strong>$200</strong> via M-Pesa today — then <strong>$12.44/day</strong> for 180 days. Device activates immediately after deposit.</div>
+      </div>
+    </div>
+    <div class="ord-panel">
+      <div class="ot">Order summary</div>
+      <div class="or"><span class="ol">Alpha+ E-bike</span><span class="ov">$2,000</span></div>
+      <div class="or"><span class="ol">Payment type</span><span class="ov g">PAYGO</span></div>
+      <div class="or"><span class="ol">Deposit today</span><span class="ov">$200</span></div>
+      <div class="or"><span class="ol">Daily payment</span><span class="ov g">$12.44</span></div>
+      <div class="or"><span class="ol">Period</span><span class="ov">180 days</span></div>
+      <div class="or"><span class="ol">Total repayment</span><span class="ov">$2,160</span></div>
+      <div class="pb3">Confirm &amp; pay deposit →</div>
+      <div style="font-size:9px;color:rgba(255,255,255,.35);margin-top:8px;text-align:center">Secured by M-Pesa · Cancel anytime</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<p class="lbl">5 — User dashboard (dashboard.html)</p>
+<div class="frame">
+  <div class="nav">
+    <div class="nb"><div class="lb"><div class="ld"></div></div><span class="bt">Solar<span>Ride</span></span></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:28px;height:28px;border-radius:50%;background:#dcfce7;border:2px solid #22c55e;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#16a34a">JK</div>
+      <span style="font-size:11px;color:rgba(255,255,255,.5)">John Kamau</span>
+    </div>
+  </div>
+  <div class="dash-header">
+    <div><div class="dash-welcome">Welcome back, <span>John</span></div><div class="dash-date">Thursday, 23 April 2025</div></div>
+    <span style="background:#111;color:#22c55e;font-size:10px;font-weight:700;padding:7px 14px;border-radius:5px">Pay today</span>
+  </div>
+  <div class="dash-body">
+    <div class="metrics">
+      <div class="metric"><div class="ml">Active plans</div><div class="mv">2</div></div>
+      <div class="metric"><div class="ml">Total paid</div><div class="mv g">$284</div></div>
+      <div class="metric"><div class="ml">Days streak</div><div class="mv g">14</div></div>
+      <div class="metric"><div class="ml">Overdue</div><div class="mv r">$0</div></div>
+    </div>
+    <div class="plan">
+      <div class="ph"><div class="pln">Alpha+ E-bike</div><div class="pbg">Active — 62% complete</div></div>
+      <div class="pr"><div class="pf" style="width:62%"></div></div>
+      <div class="pd">
+        <div class="pdt">Paid: <span>112 days</span></div>
+        <div class="pdt">Remaining: <span>68 days</span></div>
+        <div class="pdt">Daily: <span>$12.44</span></div>
+        <div class="pdt">Next due: <span>Today</span></div>
+      </div>
+      <span class="paybtn">Pay today — $12.44 via M-Pesa</span>
+    </div>
+    <div class="plan">
+      <div class="ph"><div class="pln">Family Solar Kit</div><div class="pbg">Active — 28% complete</div></div>
+      <div class="pr"><div class="pf" style="width:28%"></div></div>
+      <div class="pd">
+        <div class="pdt">Paid: <span>50 days</span></div>
+        <div class="pdt">Remaining: <span>130 days</span></div>
+        <div class="pdt">Daily: <span>$3.80</span></div>
+        <div class="pdt">Next due: <span>Today</span></div>
+      </div>
+      <span class="paybtn">Pay today — $3.80 via M-Pesa</span>
+    </div>
+    <div class="hist">
+      <div class="hist-title">Recent payment history</div>
+      <div class="hist-row"><span class="hist-prod">Alpha+ E-bike</span><span class="hist-date">22 Apr 2025</span><span class="hist-amt">$12.44</span><span class="hist-status">Paid</span></div>
+      <div class="hist-row"><span class="hist-prod">Family Solar Kit</span><span class="hist-date">22 Apr 2025</span><span class="hist-amt">$3.80</span><span class="hist-status">Paid</span></div>
+      <div class="hist-row"><span class="hist-prod">Alpha+ E-bike</span><span class="hist-date">21 Apr 2025</span><span class="hist-amt">$12.44</span><span class="hist-status">Paid</span></div>
+      <div class="hist-row"><span class="hist-prod">Family Solar Kit</span><span class="hist-date">21 Apr 2025</span><span class="hist-amt">$3.80</span><span class="hist-status">Paid</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<p class="lbl">6 — Order confirmation (confirmation.html)</p>
+<div class="frame">
+  <div class="nav">
+    <div class="nb"><div class="lb"><div class="ld"></div></div><span class="bt">Solar<span>Ride</span></span></div>
+  </div>
+  <div class="confirm-bg">
+    <div class="cion"><div class="cck"></div></div>
+    <div class="ctit">Order confirmed!</div>
+    <div class="csub">Thank you John. Your PAYGO plan is now active. Check your M-Pesa for confirmation.</div>
+    <div class="cm">
+      <div class="cmc"><div class="cml">Order number</div><div class="cmv g">SR-482910</div></div>
+      <div class="cmc"><div class="cml">Payment method</div><div class="cmv">M-Pesa PAYGO</div></div>
+      <div class="cmc"><div class="cml">Daily payment</div><div class="cmv g">$12.44/day</div></div>
+      <div class="cmc"><div class="cml">First payment due</div><div class="cmv">Tomorrow</div></div>
+    </div>
+    <div class="items-box">
+      <div class="items-title">Items ordered</div>
+      <div class="item-row"><span class="item-n">Alpha+ E-bike x1</span><span class="item-p">$2,000.00</span></div>
+    </div>
+    <div class="total-box">
+      <div class="total-lbl">Deposit paid today via M-Pesa</div>
+      <div class="total-amt">$200.00</div>
+    </div>
+    <div class="cbt">Go to my dashboard →</div>
+  </div>
+  <div class="foot"><span class="fb">SolarRide &copy; 2025</span><div class="fls"><span class="fl">Support</span><span class="fl">Contact</span></div></div>
+</div>
+
+</body>
+</html>

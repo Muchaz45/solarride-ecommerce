@@ -1,0 +1,72 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /* Remove bullets */
+.nav-menu,
+.dropdown {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Parent item */
+.nav-item {
+    position: relative;
+    display: inline-block;
+}
+
+/* Hidden dropdown initially */
+.dropdown {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    background: white;
+    min-width: 150px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Show dropdown when hovering parent */
+.nav-item:hover .dropdown {
+    display: block;
+}
+
+/* Styling links */
+.dropdown li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown li a:hover {
+    background: #f0f0f0;
+}
+        </style>
+
+    </head>
+    <body>
+        <nav>
+    <ul class="nav-menu">
+        <li class="nav-item">
+            <a href="#">About</a>
+
+            <ul class="dropdown">
+                <li><a href="#">Our Team</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">History</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+    </body>
+</html> 
+
+

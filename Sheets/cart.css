@@ -1,0 +1,134 @@
+@import url('https://googleapis.com');
+/* Index css */
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+.cart-page{
+    margin: 120px 20px 100px 20px;
+
+}
+
+.cart-page-contaner{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+}
+
+.left-section{
+    display: flex;
+    flex-direction: column;
+}
+.right-section{
+    margin-bottom: auto;
+    margin-top: 20px;
+}
+
+.total-quantity{
+    color: white;
+}
+
+.cart-items-container{
+    border: 0.5px solid rgb(200, 200, 200, 0.5);
+    background-color: rgb(250, 250, 250, 0.5);
+    box-shadow: 1px 1px 5px  rgb(200, 200, 200, 0.5);
+    margin: 20px 20px 10px 0;
+    border-radius: 20px;
+}
+
+.cart-product-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 10px;
+}
+.update-btns{
+    background-color: white;
+    margin: 10px;
+    padding: 5px 10px;
+    border: 2px solid rgb(134, 218, 14);
+    font-size: 14px;
+    border-radius: 10px;
+
+}
+
+.update-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 40px;
+}
+.update-btn{
+    border: none;
+    background-color: white;
+    margin: auto;
+    padding: 5px 10px ;
+    font-size: 18px;
+}
+.delete-btn{
+    margin: auto;
+    border: none;
+    background-color: white;
+    font-size: 14px;
+}
+
+.continue-shopping-btn{
+    margin: 10px auto auto 10px;
+    border: 0.5px solid rgb(200, 200, 200, 0.5);
+    background-color: rgb(250, 250, 250, 0.5);
+    box-shadow: 1px 1px 5px  rgb(200, 200, 200, 0.5);
+    border-radius: 5px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(134, 218, 14);
+
+}
+
+.cart-order-summary{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 0.5px solid rgb(200, 200, 200, 0.5);
+    background-color: rgb(250, 250, 250, 0.5);
+    box-shadow: 1px 1px 5px  rgb(200, 200, 200, 0.5);
+    border-radius: 20px;
+    padding: 40px;
+
+}
+
+
+.cart-product-image{
+    width: 150px;
+}
+.proceed-btn{
+    background-color: rgb(134, 218, 14);
+    border: none;
+    margin: auto;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px  rgb(134, 218, 14, 0.5);
+
+
+
+}
+.consider-paygo{
+    margin: auto;
+    padding: 10px 30px 10px 30px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 0.5px solid rgb(200, 200, 200, 0.5);
+    background-color: white;
+    box-shadow: 1px 1px 5px  rgb(200, 200, 200, 0.5);
+    border-radius: 5px;
+
+}
+
+hr{
+    margin: 20px 100px;
+    border: 1px solid rgb(200, 200, 200, 0.5);
+}

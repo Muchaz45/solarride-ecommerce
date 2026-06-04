@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <title> Products</title>
+    <link rel = "stylesheet" href ="Sheets/index.css">
+    <link rel = "stylesheet" href ="Sheets/products.css">
+    <link rel = "stylesheet" href ="Sheets/cart.css">
+    <link rel = "stylesheet" href ="Sheets/calculator.css">
+    <link rel = "stylesheet" href ="Sheets/checkout.css">
+</head>
+
+<body>
+    <div class = "products-header">
+        <div class = "logo-space">
+            <img class = "company-logo" src ="Images/solarride_logo.svg">
+        </div>
+        <div class = "search-section">
+            
+            <select class = "select-btn" onchange = "updateInput()">
+                    <option value = "">Select</option>
+            </select>
+           
+            <input type = "search" placeholder = "Search products e.g solar, e-bikes etc" class = "search-bar">
+            <button class = "search-btn" onclick = "renderbySearch()">
+                <img class = "search-icon" src = "Images/search.svg">
+            </button>
+        </div>
+
+        <div class = "cart-details">
+            <div class = "cart-logo-container" onclick = "window.location = 'cart.html'">
+                <img class = "cart-logo" src = "Images/cart icon(white).webp">
+                <div class = "total-quantity"></div>
+            </div>
+            <button class = "my-account-btn" onclick = "window.location = 'registration.html'">
+             My Account</button>
+        </div>
+
+    </div>
+
+
+    <div class = "products-filter">
+        <button class = "all-filter filter-btn" onclick = "renderProducts()">All products</button>
+        <button class = "solar-filter filter-btn" onclick = "renderSolar('solar')">Solar</button>
+        <button class = "e-bikes-filter filter-btn" onclick = "renderBikes('bikes')">E-bikes</button>
+        <button class = "others-filter filter-btn">Others</button>
+        <button class = "paygo-only-filter filter-btn">PAYGO Only</button>
+    </div>
+
+
+    <div class = "products-listing">
+        
+        <div class = "filter-sidebar">
+            <div class="category-filter">
+                <div class = "filter-by-container">
+                    <p class = "filter-by">Category</p>
+                </div>
+                <div class = filter-check>
+                    <input type = "checkbox" id = "all-products-filter">
+                    <label for = "all-products-filter">All products</label>
+                </div>
+                <div class = filter-check>
+                    <input type = "checkbox" id = "solar-filter">
+                    <label for = "solar-filter">solar</label>
+                </div>
+                <div class = filter-check>
+                    <input type = "checkbox" id = "ebikes-filter">
+                    <label for = "ebikes-filter">E-bikes</label>
+                </div>
+                <div class = filter-check>
+                    <input type = "checkbox" id = "others-filter">
+                    <label for = "others-filter">Others/Accessories</label>
+                </div>
+            </div>
+
+
+            <div class="category-filter">
+                
+                <div class = "filter-by-container">
+                    <p class = "filter-by">Paygo option</p>
+                </div>
+                <div class = "filter-check">
+                    <input type = "checkbox" id = "all-products-filter">
+                    <label for = "all-products-filter">All</label>
+                </div>
+                <div class = "filter-check">
+                    <input type = "checkbox" id = "pay-products-filter">
+                    <label for = "paygo-products-filter">PayGo available</label>
+                </div>
+                <div class = "filter-check">
+                    <input type = "checkbox" id = "not-paygo-products-filter">
+                    <label for = "not-paygo-products-filter">payGo not available</label>
+                </div>
+            
+            </div>
+                 
+
+            <div class="category-filter" id = "price-range" >
+                <div class = "filter-by-container">
+                    <p class = "filter-by">Price range</p>
+                </div>
+                <input type = "range" id = "price-range" value = "500" min = "0" max = "1000">
+                <div  class = "range-labels"><span id = "min-val">0</span>
+
+                <span id = "max-val">1000+</span></div>
+                 
+
+            </div>
+               
+            <div>
+                <button class = "clear-filter">Clear Filters</button> 
+            </div>
+                
+           
+        </div>
+        <div class = "product-container"></div>
+        
+    </div>
+    
+
+
+    <script src ="Scripts/products.js"></script>
+</body>
+
+</html>

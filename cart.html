@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Cart</title>
+    <link rel = "stylesheet" href ="Sheets/index.css">
+    <link rel = "stylesheet" href ="Sheets/products.css">
+    <link rel = "stylesheet" href ="Sheets/cart.css">
+    <link rel = "stylesheet" href ="Sheets/calculator.css">
+    <link rel = "stylesheet" href ="Sheets/checkout.css">
+</head>
+
+<body>
+    <div class = "products-header">
+        <div class = "logo-space">
+            <img class = "company-logo" src ="Images/solarride_logo.svg">
+        </div>
+        <div class = "search-section">
+            
+            <select class = "select-btn" onchange = "updateInput()">
+                    <option value = "">Select</option>
+            </select>
+           
+            <input type = "search" placeholder = "Search products e.g solar, e-bikes etc" class = "search-bar">
+            <button class = "search-btn" onclick = "renderbySearch()">
+                <img class = "search-icon" src = "Images/search.svg">
+            </button>
+        </div>
+
+        <div class = "cart-details">
+            <div class = "cart-logo-container" onclick = "window.location = 'cart.html'">
+                <img class = "cart-logo" src = "Images/cart icon(white).webp">
+                <div class = "total-quantity"></div>
+            </div>
+            <button class = "my-account-btn" onclick = "window.location = 'registration.html'">
+             My Account</button>
+        </div>
+
+    </div>
+
+    <div class = "cart-page">
+        <div class = "cart-heading-container">
+            <h3 class = "cart-heading">Your Cart (3)</h3>
+            <p class ="cart-opening-paragraph">Review your items before checkout</p>
+        </div>
+
+    <div class = "cart-page-contaner">
+        <div class = "left-section">
+            <div class ="cart-items-container"></div>
+            <button class = "continue-shopping-btn" onclick = "window.location = 'products.html'">&larr; Continue Shopping</button>
+        </div>
+        <div class = "right-section cart-order-summary"></div>
+    </div>
+    </div>  
+<script src = "Scripts/cart.js"></script>
+</body>
+
+</html>

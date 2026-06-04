@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Checkout</title>
+    <link rel = "stylesheet" href ="Sheets/index.css">
+    <link rel = "stylesheet" href ="Sheets/products.css">
+    <link rel = "stylesheet" href ="Sheets/cart.css">
+    <link rel = "stylesheet" href ="Sheets/calculator.css">
+    <link rel = "stylesheet" href ="Sheets/checkout.css">
+</head>
+
+<body>
+    <div class = "products-header">
+        <div class = "logo-space">
+            <img class = "company-logo" src ="Images/solarride_logo.svg">
+        </div>
+        <div class = "search-section">
+            <select class = "select-btn" onchange = "updateInput()">
+                <option value = "">Select</option>
+            </select>
+            <input type = "search" placeholder = "Search products e.g solar, e-bikes etc" class = "search-bar">
+            <button class = "search-btn" onclick = "renderbySearch()">
+                <img class = "search-icon" src = "Images/search.svg">
+            </button>
+        </div>
+        <div class = "cart-details">
+            <div class = "cart-logo-container" onclick = "window.location = 'cart.html'">
+                <img class = "cart-logo" src = "Images/cart icon(white).webp">
+                <div class = "total-quantity"></div>
+            </div>
+            <button class = "my-account-btn" onclick = "window.location = 'registration.html'">
+             My Account</button>
+        </div>
+    </div>
+
+    <div class = "checkout-page">
+        <div class = "checkout-heading-container">
+            <h3 class = "checkout-heading">Checkout</h3>
+            <p class ="checkout-opening-paragraph">Check your order</p>
+        </div>
+        <div class = "checkout-page-container">
+            <div class = "customer-details-container">
+                <div class ="customer-details">
+                    <div class = "input-items-header">
+                        <h3 class = "input-title">1. Delivery Information</h3>
+                    </div>
+                    <div class = "checkout-input-container">
+                        <label for = "customer-name">Name: </label>
+                        <input type="text" id ="customer-name" class = "customer-email" placeholder = "John Doe">
+                    </div>
+                    <div class = "checkout-input-container">
+                        <label for = "customer-email">Email: </label>
+                        <input type="text" id ="customer-email" class = "customer-email" placeholder = "alpha@xyz.con">
+                    </div>
+                    <div class = "checkout-input-container">
+                        <label for = "customer-contact">Phone Number: </label>
+                        <input type="tel" id ="customer-contact" class = "customer-contact" placeholder = "+1 3456789">
+                    </div>
+                    <div class = "checkout-input-container">
+                        <label for = "customer-location">Address: </label>
+                        <input type="text" id ="customer-location" class = "customer-location" placeholder = "1234 Waiyaki Way">
+                    </div>
+                   
+                </div>
+                <div class = "payment-details">
+                    <div class = "input-items-header">
+                        <h3 class = "input-title">2. Payment Details</h3>
+                    </div>
+                    <div class = "payment-container">
+
+                        <div class = "payment-mode-type">
+                            <input type = "radio" id = "mpesa" class = "payment-method" name= "payment-method">
+                            <label for = "mpesa">M-PESA</label>
+                        </div>
+                        
+                        <div class = "payment-mode-image-container">
+                            <img class = "mpesa-logo"src = "Images/mpesa logo.png">
+                        </div>
+            
+                    </div>
+
+                    <div class="payment-container">  
+                        
+                        <div class = "payment-mode-type">
+                            <input type = "radio" id = "airtel-money" class = "payment-method" name= "payment-method">
+                            <label for = "airtel-money">Airtel Money</label>
+                        </div>
+                        
+                        <div class = "payment-mode-image-container">
+                            <img class = "airtel-logo"src = "Images/airtel money.png">
+                        </div>
+                        
+                    </div>
+
+                    <div class="payment-container">  
+                        
+                        <div class = "payment-mode-type">
+                            <input type = "radio" id = "wave-money" class = "payment-method" name= "payment-method">
+                            <label for = "wave-money">Wave Money</label>
+                        </div> 
+                        
+                        <div class = "payment-mode-image-container">
+                            <img class = "wave-logo"src = "Images/wave money.png">
+                        </div>
+                        
+                    </div>
+
+                    <div class = "payment-container">
+
+                        <div class = "payment-mode-type">
+                            <input type = "radio" id = "credit-card" class = "payment-method" name= "payment-method">
+                            <label for = "credit-card">Credit Card</label>
+                        </div>
+                        
+                        <div class = "payment-mode-image-container">
+                            <img class = " visa-logo" src = "Images/visa.png">
+                            <img class = "mastercard-logo" src = "Images/master card.webp">
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div class = "right-section order-details">
+                <h3 class = "checkout-items-heading">Order Summary</h3>
+                <div class = "purchase-summary"></div>
+                <div class = "payment-checkout">
+                    <div class="sub-total-container">
+                        <p id = "checkout-subtotal">Sub-total:</p><span class = "checkout-subtotal"></span>
+                    </div>
+                    <div class="sub-total-container">
+                        <p id = "checkout-shipping">Shipping: </p><span class = "checkout-shipping"></span>
+                    </div>
+                    
+                    <div class="sub-total-container">
+                        <p id = "checkout-tax">Tax: </p><span class = "checkout-tax"></span>
+                    </div>
+                    
+                    <div class="sub-total-container">
+                        <h4 id = "checkout-total">Total: </h4><h4 class = "checkout-total"></h4>
+                    </div>
+                    
+                    
+                    <button class = "place-order-btn">Place order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src = "Scripts/checkout.js"></script>
+</body>
+
+</html>

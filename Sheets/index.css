@@ -1,0 +1,171 @@
+@import url('https://googleapis.com');
+/* Index css */
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-page{
+    height: 100vh;
+    padding-top: 20px;
+    color: black;
+}
+
+.page-header{
+    display: flex;
+    position: fixed;
+    justify-content:space-between;
+    align-items: center;
+    height: 10vh;
+    background-color: rgb(54, 69, 79);
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.logo-space{
+    display: flex;
+    width: 300px;
+}
+
+.company-logo{
+    width: 250px;
+    margin-left: 20px;
+}
+
+.nav-items{
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+    max-width: 500px;
+}
+
+.registration-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
+    width: 300px;
+    
+}
+
+.nav-item{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.login-btn{
+    font-size: 20px;
+}
+
+.get-started{
+    font-size:20px;
+    padding: 8px;
+    border: 2px solid white;
+    border-radius: 22px;
+
+}
+
+.opening-page{
+    margin-top: 100px;
+    color: black;
+    background-color: white;
+    
+}
+
+.opening-paragraph{
+    font-size: 20px;
+    padding: 20px;
+    background-color:transparent;
+    color: rgb(134, 218, 14);
+    border: 2px solid rgb(134, 218, 14);
+    border-radius: 30px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+
+.main-title{
+    font-size: 60px;
+    margin-bottom: 60px;
+}
+.intro-title{
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.shop-btn{
+    font-size: 20px;
+    border: none;
+    padding: 15px 25px;
+    background-color: rgb(134, 218, 14);
+    color: white;
+    border-radius: 35px;
+    margin-right: 40px;
+
+}
+
+.calculate-payments{
+    font-size: 20px;
+    padding: 15px;
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+    border-radius: 35px;
+
+}
+
+
+
+.metrics{
+    display: flex;
+    justify-content: space-between;
+    width: 40vw;
+    margin-left: 40px;
+    margin-top: 80px;
+    color: white;
+}
+.number-served, .instalment-rate, .satisfaction-rate{
+    border-left: 4px solid white;
+    padding-left: 20px;
+    padding-top: 0;
+    padding-right: 20px;
+    padding-bottom: 0;
+   
+}
+.number-int, .instalment-int, .satisfaction-int{
+    font-size: 30px;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.number-string, .instalment-string, .satisfaction-string{
+    color: rgb(134, 218, 14);
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+
+.solar-highlight{
+    color: rgb(134, 218, 14);
+}
+
+.products-index{
+    display: flex;
+}
+
+.product-index{
+    border: 1px solid grey;
+    margin: 40px;
+    padding: 40px;
+    border-radius: 20px;
+}

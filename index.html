@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang ="en">
+    
+<head>
+<title class = "landing-page">Landing page</title>
+<link rel = "stylesheet" href ="Sheets/index.css">
+<link rel = "stylesheet" href ="Sheets/products.css">
+<link rel = "stylesheet" href ="Sheets/cart.css">
+<link rel = "stylesheet" href ="Sheets/calculator.css">
+<link rel = "stylesheet" href ="Sheets/checkout.css">
+<meta name = "viewport" content = "width = device-width, initial sclae =1">
+<meta charset ="utf-8">
+</head>
+
+<body>
+<div class = "hero-page">
+
+    <div class = "page-header">
+        <div class = "logo-space">
+            <img class = "company-logo" src ="Images/solarride_logo.svg">
+        </div>
+
+        <div class = "nav-items">
+            <a class = "nav-item" href = "products.html">Products</a>
+            <a class = "nav-item" href ="calculator.html">PAYGO</a>
+            <a class = "nav-item" href ="calculator.html">Calculator</a>
+            <a class = "nav-item" href ="index.html">About</a>
+        </div>
+
+        <div class = "cart-details">
+            <div class = "cart-logo-container" onclick = "window.location = 'cart.html'">
+                <img class = "cart-logo" src = "Images/cart icon(white).webp">
+                <div class = "total-quantity"></div>
+            </div>
+            <button class = "my-account-btn" onclick = "window.location = 'registration.html'">
+             Get Started</button>
+        </div>
+
+    </div>
+       
+    <div class = "opening-page">
+        <p><button class = "opening-paragraph">Clean Energy for Everyone</button></p>
+        <h2 class = "main-title">Power you life <br>with <span class = "solar-highlight">solar energy</span></h2>
+        <p class = "intro-title">Affordable solar systems tailored for your needs. <br>Pay upfront or join a payment plan--with no or minimal upfront payment required</p>
+        <div class = "index-btns">
+            <button class = "shop-btn" onclick = "window.location = 'products.html'">
+                Shop Products &rarr;</button>
+            <button class = "calculate-payments" onclick = "window.location = 'calculator.html'">
+                Calculate Payments &rarr;</button>
+        </div>
+    </div>
+    
+
+</div>
+
+
+<script src = "Scripts/index.js"></script>
+</body>
+</html>

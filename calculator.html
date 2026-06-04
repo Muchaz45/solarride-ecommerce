@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Calculator</title>
+    <link rel = "stylesheet" href ="Sheets/index.css">
+    <link rel = "stylesheet" href ="Sheets/products.css">
+    <link rel = "stylesheet" href ="Sheets/cart.css">
+    <link rel = "stylesheet" href ="Sheets/calculator.css">
+    <link rel = "stylesheet" href ="Sheets/checkout.css">
+
+</head>
+
+<body>
+    <div class = "products-header">
+        <div class = "logo-space">
+            <img class = "company-logo" src ="Images/solarride_logo.svg">
+        </div>
+        <div class = "search-section">
+            <select class = "select-btn" onchange = "updateInput()">
+                <option value = "">Select</option>
+            </select>
+            <input type = "search" placeholder = "Search products e.g solar, e-bikes etc" class = "search-bar">
+            <button class = "search-btn" onclick = "renderbySearch()">
+                <img class = "search-icon" src = "Images/search.svg">
+            </button>
+        </div>
+        <div class = "cart-details">
+            <div class = "cart-logo-container" onclick = "window.location = 'cart.html'">
+                <img class = "cart-logo" src = "Images/cart icon(white).webp">
+                <div class = "total-quantity">7</div>
+            </div>
+            <button class = "my-account-btn" onclick = "window.location = 'registration.html'">
+             My Account</button>
+        </div>
+    </div>
+
+    <div class = "paygo-page">
+            
+        <div class="paygo-card">
+            <div class = "calculator-intro">
+                <h3 class="paygo-title">PAYGO Calculator</h3>
+                <p class="paygo-intro">Select product, payment period and deposit amount to see your daily instalments</p>
+            </div>
+            <div class = "paygo-input">
+                <label for ="paygo-product" >SELECT PRODUCT</label><br>
+                <select class = "paygo-product" id = "paygo-product" onchange = "updateCalculator(); renderpaygoProduct(); ">
+                    <option value = "">Please Select</option>
+                </select>
+            </div>
+            <div class = "paygo-product-details-container">
+                <div class = "paygo-input paygo-product-details">
+                    <label for ="paygo-input-label" >PRODUCT ID</label><br>
+                    <input disabled type = "text" id="paygo-id" placeholder = "P00x" oninput = "updateCalculator()">
+                </div>
+                <div class = "paygo-input paygo-product-details">
+                    <label for ="paygo-input-label" >PRODUCT PRICE</label><br>
+                    <input disabled type = "text" id="paygo-price" placeholder = "$ 0.0" oninput = "updateCalculator()">
+                </div>
+            </div>
+            <div class="paygo-product-details-container">
+                <div class = "paygo-input paygo-product-details">
+                    <label for ="paygo-input-label" >DEPOSIT AMOUNT</label><br>
+                    <input type="number" id="paygo-deposit" oninput = "updateCalculator()">
+                </div>
+                <div class = "paygo-input paygo-product-details">
+                    <label for ="paygo-input-label" >DEPOSIT PERCENTAGE</label><br>
+                    <input disabled type="text" id="paygo-deposit-percent" oninput = "updateCalculator()">
+                </div>
+            </div>
+            <div class="paygo-product-details-container">
+                <div class = "paygo-input paygo-product-details">
+                    <label for ="paygo-input-label" >REPAYMENT PERIOD (DAYS)</label><br>
+                    <input type="number" id="paygo-period-days" oninput = "updateCalculator()">
+                </div>
+                <div class = "paygo-input paygo-product-details">
+                    <label for ="paygo-input-label" >REPAYMENT PERIOD (MONTHS)</label><br>
+                    <input disabled type="text" id="paygo-period-months" oninput = "updateCalculator()">
+                </div> 
+            </div>
+            <div class = "paygo-input">
+                <label for ="paygo-input-label" >DATE OF ENROLLMENT</label><br>
+                <input type="date" id="paygo-date" oninput = "updateCalculator()">
+            </div> 
+        
+        </div>           
+        <div class = "calculator-product-section">
+            <div class = "paygo-product-container">
+
+            </div>
+            <div class = "paygo-summary">
+                <h4>Your Daily Payment</h4>
+                <h2 class = "daily-instalment">$ 0.0/day</h2>
+                <p>Product: <span class = "product">""</span></p>
+                <p>Product Price: <span class = "price">$ 0.0</span></p>
+                <p>Deposit: <span class = "deposit">$ 0.0</span></p>
+                <p>Interest: <span class = "interest"> 0%</span></p>
+                <p>Payment period: <span class = "payment-period">Days</span></p> 
+                <button class = "start-paygo" onclick = "window.location = 'checkout.html'">Start PAYGO Plan</button>
+            </div>
+        </div>
+        
+    </div>
+    
+ 
+<script src = "Scripts/calculator.js"></script>
+</body>
+</html>
